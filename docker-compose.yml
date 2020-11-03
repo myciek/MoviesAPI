@@ -8,6 +8,14 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   web:
+    environment:
+     OMDBAPI_KEY: "416d07d1"
+     SECRET_KEY: "s0vi-82s@)wfrw$xbhqloi$xg^bw8#e^n17r&i5ej=pz5^b%w^"
+     DB_NAME: "postgres"
+     DB_USER: "postgres"
+     DB_PASSWORD: "postgres"
+     DB_HOST: "db"
+     DB_PORT: 5432
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
