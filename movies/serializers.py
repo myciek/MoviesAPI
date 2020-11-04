@@ -16,7 +16,7 @@ class RatingSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    raitings = RatingSerializer(many=True)
+    ratings = RatingSerializer(many=True)
 
     class Meta:
         model = Movie
