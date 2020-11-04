@@ -1,10 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django_filters import rest_framework as filters
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from movies.filters import MovieFilter
 from movies.models import Movie
 from movies.serializers import MovieSerializer, CreateMovieSerializer, RatingSerializer
 from movies.utils import get_movie_from_api
@@ -13,6 +15,8 @@ from movies.utils import get_movie_from_api
 class MoviesViewSet(ModelViewSet):
     serializer_class = MovieSerializer
     queryset = Movie.objects.all()
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = MovieFilter
 
     def create(self, request):
         create_movie_serializer = CreateMovieSerializer(data=request.data)
