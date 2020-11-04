@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from movies.models import Movie, Rating
-from movies.utils import get_movie_from_api
 
 
 class CreateMovieSerializer(serializers.ModelSerializer):
