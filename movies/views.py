@@ -10,13 +10,16 @@ from movies.filters import MovieFilter
 from movies.models import Movie
 from movies.serializers import MovieSerializer, CreateMovieSerializer, RatingSerializer
 from movies.utils import get_movie_from_api
+from rest_framework.filters import OrderingFilter
 
 
 class MoviesViewSet(ModelViewSet):
     serializer_class = MovieSerializer
     queryset = Movie.objects.all()
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, OrderingFilter)
     filterset_class = MovieFilter
+    ordering_fields = ("year",)
+
 
     def create(self, request):
         create_movie_serializer = CreateMovieSerializer(data=request.data)
