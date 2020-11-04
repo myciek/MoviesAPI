@@ -32,7 +32,7 @@ class Movie(models.Model):
     production = models.TextField(max_length=12)
     website = models.TextField(max_length=255)
     totalseasons = models.TextField(max_length=3, blank=True, null=True)
-    raitings = models.ManyToManyField(Rating, related_name="movies", blank=True)
+    ratings = models.ManyToManyField(Rating, related_name="movies", blank=True)
 
 
 

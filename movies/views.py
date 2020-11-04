@@ -33,9 +33,19 @@ class MoviesViewSet(ModelViewSet):
                 rating_serializer = RatingSerializer(data=rating)
                 rating_serializer.is_valid(raise_exception=True)
                 rating = rating_serializer.save()
-                movie.raitings.add(rating.pk)
+                movie.ratings.add(rating.pk)
 
         movie.save()
         movie_serializer = self.serializer_class(movie)
 
         return Response(movie_serializer.data, status=status.HTTP_201_CREATED)
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            movie = Movie.objects.get(pk=kwargs["pk"])
+            for rating in movie.ratings.all():
+                rating.delete()
+            movie.delete()
+            return Response("Movie deleted", status=status.HTTP_200_OK)
+        except Movie.DoesNotExist:
+            return Response("Movie with this id not found", status=status.HTTP_404_NOT_FOUND)
