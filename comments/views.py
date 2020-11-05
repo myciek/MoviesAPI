@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django_filters import rest_framework as filters
 from rest_framework import status
+from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -12,20 +13,20 @@ from comments.serializers import CommentSerializer
 from movies.models import Movie
 
 
-class CommentsViewSet(ModelViewSet):
+class CommentsListCreateAPIView(ListCreateAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
 
 
 class TopAPIView(APIView):
     def get(self, request):
-        if not request.data.get("start", None) or not request.data.get("end", None):
+        if not request.query_params.get("start", None) or not request.query_params.get("end", None):
             return Response("You have to specify date range!", status=status.HTTP_400_BAD_REQUEST)
         movies = Movie.objects.all()
         comments_count = {movie.pk: len(movie.comments.filter(
-            created__gte=request.data["start"]
+            created__gte=request.query_params["start"]
         ).filter(
-            created__lte=request.data["end"]
+            created__lte=request.query_params["end"]
         ).all()) for movie in movies}
         sorted_count = {k: v for k, v in sorted(comments_count.items(), key=lambda item: item[1], reverse=True)}
 
