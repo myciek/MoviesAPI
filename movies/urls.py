@@ -4,7 +4,7 @@ from movies.views import MoviesViewSet
 
 router = DefaultRouter()
 app_name = 'movies'
-router.register("", MoviesViewSet)
+router.register("", MoviesViewSet, basename="movie-view-set")
 
 urlpatterns = [
     path("", include(router.urls)),

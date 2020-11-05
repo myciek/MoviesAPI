@@ -20,7 +20,6 @@ class MoviesViewSet(ModelViewSet):
     filterset_class = MovieFilter
     ordering_fields = ("year",)
 
-
     def create(self, request):
         create_movie_serializer = CreateMovieSerializer(data=request.data)
         create_movie_serializer.is_valid(raise_exception=True)
