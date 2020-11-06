@@ -11,11 +11,14 @@ from rest_framework.viewsets import ModelViewSet
 from comments.models import Comment
 from comments.serializers import CommentSerializer
 from movies.models import Movie
+from comments.filters import CommentFilter
 
 
 class CommentsListCreateAPIView(ListCreateAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = CommentFilter
 
 
 class TopAPIView(APIView):
