@@ -3,3 +3,6 @@ psycopg2-binary>=2.8
 djangorestframework>0.15
 requests
 django-filter>=2.2
+gunicorn
+django-heroku
+whitenoise
