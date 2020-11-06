@@ -14,13 +14,19 @@ from movies.models import Movie
 from comments.filters import CommentFilter
 
 
+# View for creating for creating and retrieving list of comments
+# [POST] with { "text": text, "movie": movie_id} - if movie exists create comment for it
+# [GET] - list of comments
+# Optional parameters:
+# - filtering: /comments?movie=id
 class CommentsListCreateAPIView(ListCreateAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = CommentFilter
 
-
+# View for retrieving ranking of movies, based on comments in specified data range
+# [GET] - /top?start=date&end=date - returns movies ordered by number of comments in specified time range
 class TopAPIView(APIView):
     def get(self, request):
         if not request.query_params.get("start", None) or not request.query_params.get("end", None):
