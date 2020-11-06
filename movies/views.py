@@ -12,7 +12,14 @@ from movies.serializers import MovieSerializer, CreateMovieSerializer, RatingSer
 from movies.utils import get_movie_from_api
 from rest_framework.filters import OrderingFilter
 
-
+# ViewSet for movie model
+# [GET] - list of all movies
+# Optional parameters:
+# filtering: /movies?<filter>=<data> where <filter> can be rated or type
+# sorting: /movies?ordering=year from oldest or /movies?ordering=-year from newest
+# [POST] with {"title": movie_title} - retrieves data from http://www.omdbapi.com , creates movie object and returns movie data
+# [PATCH] /id - with body with fields you want to change
+# [DELETE] /id - if movie exists delete it
 class MoviesViewSet(ModelViewSet):
     serializer_class = MovieSerializer
     queryset = Movie.objects.all()
