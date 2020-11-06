@@ -15,7 +15,7 @@ Recruitment task for Decathlon
     - filtering: ``/movies?<filter>=<data>`` where ``<filter>`` can be ``rated`` or ``type``
     - sorting: ``/movies?ordering=year`` from oldest or  ``/movies?ordering=-year`` from newest
 - ``/movies/<id>`` [PATCH] - with body with fields you want to change
-- ``/movies/<id>`` [DELETE] - if movie exists delete
+- ``/movies/<id>`` [DELETE] - if movie exists delete it
 - ``/comments`` [POST] with { "text": text, "movie": movie_id} - if movie exists create comment for it
 - ``/comments`` [GET] - list of comments
     <b>Optional parameters</b>:
