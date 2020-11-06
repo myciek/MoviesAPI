@@ -8,6 +8,8 @@ Recruitment task for Decathlon
 - run ``docker-compose up --build``(it will apply migrations and run app)
 - go to ``http://localhost:8003/<endpoint>`` to use application
 
+## Heroku usage
+- go to 
 ## Endpoints
 - ``/movies`` - [POST] with {"title": movie_title} - retrieves data from ``http://www.omdbapi.com`` , creates movie object and returns movie data
 - ``/movies`` - [GET] - list of all movies
