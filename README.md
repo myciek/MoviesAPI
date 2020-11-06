@@ -20,7 +20,7 @@ Recruitment task for Decathlon
 - ``/comments`` [GET] - list of comments
     <b>Optional parameters</b>:
      - filtering: ``/comments?movie=id``
--``/top?start=date&end=date`` - [GET] - returns movies ordered by number of comments in specified time range  
+- ``/top?start=date&end=date`` - [GET] - returns movies ordered by number of comments in specified time range  
 
 ## Testing
 - run ``docker-compose run api python manage.py test`` to start tests
